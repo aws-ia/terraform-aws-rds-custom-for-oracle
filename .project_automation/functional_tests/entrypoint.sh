@@ -23,13 +23,13 @@ for dir in ${PROJECT_PATH}/examples/*; do
 done
 
 #********** Terratest execution **********
-# echo "Running Terratest"
-# export GOPROXY=https://goproxy.io,direct
-# cd test
-# rm -f go.mod
-# go mod init github.com/aws-ia/terraform-project-ephemeral
-# go mod tidy
-# go install github.com/gruntwork-io/terratest/modules/terraform
-# go test -timeout 45m
+echo "Running Terratest"
+export GOPROXY=https://goproxy.io,direct
+cd test
+rm -f go.mod
+go mod init github.com/aws-ia/terraform-project-ephemeral
+go mod tidy
+go install github.com/gruntwork-io/terratest/modules/terraform
+go test -timeout 45m
 
 echo "End of Functional Tests"
