@@ -7,10 +7,10 @@ CHECKOV=$(checkov --config-file ${PROJECT_PATH}/.checkov.yml  || true)
 if [-z "${CHECKOV}" ]
 then
   echo "Checkov Analysis Passed"
-  git clean -fxd
+  git clean -ffxd
 else
   echo "Checkov Analysis Failed"
   echo "$CHECKOV"
-  git clean -fxd
+  git clean -ffxd
   exit 1
 fi
