@@ -39,6 +39,7 @@ done
 
 #********** Terratest execution **********
 echo "Running Terratest"
+export GOPROXY=https://goproxy.io,direct
 cd test
 rm -f go.mod
 go mod init github.com/aws-ia/terraform-project-ephemeral

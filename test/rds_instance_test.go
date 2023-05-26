@@ -7,12 +7,12 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestRDSInstanceReplicaExample(t *testing.T) {
+func TestRDSInstanceExample(t *testing.T) {
 	// Construct the terraform options with default retryable errors to handle the most common
 	// retryable errors in terraform testing.
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 		// Set the path to the Terraform code that will be tested.
-		TerraformDir: "../examples/rds-instance-and-replica",
+		TerraformDir: "../examples/rds-instance",
 	})
 
 	// Clean up resources with "terraform destroy" at the end of the test.
