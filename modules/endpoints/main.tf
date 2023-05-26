@@ -10,35 +10,37 @@ resource "aws_security_group" "vpc_endpoint_sg" {
   description = var.endpoint_security_group_description
   tags        = var.tags
   vpc_id      = var.vpc_id
-
-  ingress {
-    description = "Allow inbound TLS"
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = [var.vpc_cidr]
-  }
-
-  ingress {
-    description = "Allow inbound HTTP"
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = [var.vpc_cidr]
-  }
-
-  # Open egress required to download dependencies
-  egress {
-    description      = "Allow outbound traffic to internet"
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-    cidr_blocks      = ["0.0.0.0/0"] #tfsec:ignore:aws-ec2-no-public-egress-sgr
-    ipv6_cidr_blocks = ["::/0"]      #tfsec:ignore:aws-ec2-no-public-egress-sgr
-  }
 }
 
+resource "aws_security_group_rule" "inbound_tls" {
+  description       = "Allow inbound TLS"
+  type              = "ingress"
+  from_port         = 443
+  to_port           = 443
+  protocol          = "tcp"
+  cidr_blocks       = [var.vpc_cidr]
+  security_group_id = aws_security_group.vpc_endpoint_sg[0]
+}
 
+resource "aws_security_group_rule" "inbound_http" {
+  description       = "Allow inbound HTTP"
+  type              = "ingress"
+  from_port         = 80
+  to_port           = 80
+  protocol          = "tcp"
+  cidr_blocks       = [var.vpc_cidr]
+  security_group_id = aws_security_group.vpc_endpoint_sg[0]
+}
+
+resource "aws_security_group_rule" "outbound_all" {
+  description       = "Allow outbound traffic to internet"
+  type              = "egress"
+  from_port         = 0
+  to_port           = 0
+  protocol          = "-1"
+  cidr_blocks       = [var.vpc_cidr] #tfsec:ignore:aws-ec2-no-public-egress-sgr
+  security_group_id = aws_security_group.vpc_endpoint_sg[0]
+}
 
 #-------------------------------
 # VPC Gateway Endpoints
