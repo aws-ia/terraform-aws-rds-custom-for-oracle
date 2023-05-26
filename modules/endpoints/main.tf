@@ -21,7 +21,7 @@ resource "aws_security_group_rule" "inbound_tls" {
   to_port           = 443
   protocol          = "tcp"
   cidr_blocks       = [var.vpc_cidr]
-  security_group_id = aws_security_group.vpc_endpoint_sg[0]
+  security_group_id = aws_security_group.vpc_endpoint_sg[0].id
 }
 
 resource "aws_security_group_rule" "inbound_http" {
@@ -33,7 +33,7 @@ resource "aws_security_group_rule" "inbound_http" {
   to_port           = 80
   protocol          = "tcp"
   cidr_blocks       = [var.vpc_cidr]
-  security_group_id = aws_security_group.vpc_endpoint_sg[0]
+  security_group_id = aws_security_group.vpc_endpoint_sg[0].id
 }
 
 resource "aws_security_group_rule" "outbound_all" {
@@ -45,7 +45,7 @@ resource "aws_security_group_rule" "outbound_all" {
   to_port           = 0
   protocol          = "-1"
   cidr_blocks       = [var.vpc_cidr] #tfsec:ignore:aws-ec2-no-public-egress-sgr
-  security_group_id = aws_security_group.vpc_endpoint_sg[0]
+  security_group_id = aws_security_group.vpc_endpoint_sg[0].id
 }
 
 #-------------------------------
