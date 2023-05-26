@@ -1,21 +1,11 @@
 <!-- BEGIN_TF_DOCS -->
-# AWS RDS Custom for Oracle Module
-This module provides prescriptive deployment for RDS Custom for Oracle. This module provides the ability to create primary instances and associated replicas.
+# Terraform Module Project
 
-Common deployment examples can be found in [examples/](./examples).
+:no\_entry\_sign: Do not edit this readme.md file. To learn how to change this content and work with this repository, refer to CONTRIBUTING.md
 
-## Availability Zones
-If not specified, primariy instances will be placed in the first subnet provided to `subnet_config`. Replicas will be placed in subnets separate from the primary, starting with the second subnet.
+## Readme Content
 
-To specify the placement to specific availability zones for the primary and replicas, use the `aws_db_instance_primary.availability_zone` and `aws_db_instance_replicas.availability_zones` attribute(s). If specifified, availability\_zones will be applied in order to the replicas.
-
-## IAM Role and Instance Profile
-If not specified, the module will create an IAM role and instance profile for the primary and replicas.
-
-To specify the IAM role and instance profile, use the `iam_role_arn` and `iam_instance_profile_arn` attributes. The role name and instance profile name must start with `AWSRDSCustom`.
-
-# Contributing
-Please see our [developer documentation](https://github.com/aws-ia/terraform-aws-vpc/blob/main/contributing.md) for guidance on contributing to this module.
+This file will contain any instructional information about this module.
 
 ## Requirements
 
@@ -54,7 +44,7 @@ Please see our [developer documentation](https://github.com/aws-ia/terraform-aws
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_aws_db_instance_primary"></a> [aws\_db\_instance\_primary](#input\_aws\_db\_instance\_primary) | Primary instance configuration values. Map where the key is the argument. For examples, see /examples/ folder.<br>/*<br>aws\_db\_instance\_primary = {<br>  allocated\_storage = 50<br>  apply\_immediately = false<br>  ...<br>}<br>*/ | <pre>object({<br>    allocated_storage         = optional(number)<br>    apply_immediately         = optional(bool)<br>    availability_zone         = optional(string)<br>    backup_retention_period   = number<br>    backup_window             = optional(string)<br>    copy_tags_to_snapshot     = optional(bool)<br>    db_name                   = string<br>    delete_automated_backups  = optional(bool)<br>    engine                    = string<br>    engine_version            = string<br>    final_snapshot_identifier = optional(string)<br>    identifier                = string<br>    instance_class            = string<br>    iops                      = optional(number)<br>    maintenance_window        = optional(string)<br>    network_type              = optional(string)<br>    password                  = string<br>    port                      = optional(number)<br>    publicly_accessible       = optional(bool)<br>    skip_final_snapshot       = optional(bool)<br>    storage_type              = optional(string)<br>    username                  = string<br>    vpc_security_group_ids    = optional(list(string))<br>  })</pre> | n/a | yes |
+| <a name="input_aws_db_instance_primary"></a> [aws\_db\_instance\_primary](#input\_aws\_db\_instance\_primary) | Primary instance configuration values. Map where the key is the argument. For examples, see /examples/ folder.<br>/*<br>aws\_db\_instance\_primary = {<br>  allocated\_storage = 50<br>  apply\_immediately = false<br>  ...<br>}<br>*/ | <pre>object({<br>    allocated_storage         = optional(number)<br>    apply_immediately         = optional(bool)<br>    availability_zone         = optional(string)<br>    backup_retention_period   = number<br>    backup_window             = optional(string)<br>    copy_tags_to_snapshot     = optional(bool)<br>    db_name                   = string<br>    delete_automated_backups  = optional(bool)<br>    deletion_protection       = optional(bool)<br>    engine                    = string<br>    engine_version            = string<br>    final_snapshot_identifier = optional(string)<br>    identifier                = string<br>    instance_class            = string<br>    iops                      = optional(number)<br>    maintenance_window        = optional(string)<br>    network_type              = optional(string)<br>    password                  = string<br>    port                      = optional(number)<br>    publicly_accessible       = optional(bool)<br>    skip_final_snapshot       = optional(bool)<br>    storage_type              = optional(string)<br>    username                  = string<br>    vpc_security_group_ids    = optional(list(string))<br>  })</pre> | n/a | yes |
 | <a name="input_private_subnet_config"></a> [private\_subnet\_config](#input\_private\_subnet\_config) | List of private subnets configurations for the RDS instance and replicas. Will be applied in order to the instance first, and then replicas. | <pre>list(object({<br>    subnet_id         = string<br>    availability_zone = string<br>  }))</pre> | n/a | yes |
 | <a name="input_private_subnet_route_table_ids"></a> [private\_subnet\_route\_table\_ids](#input\_private\_subnet\_route\_table\_ids) | List of private subnets route tables in which to associate the gateway endpoints. | `list(string)` | n/a | yes |
 | <a name="input_vpc_cidr"></a> [vpc\_cidr](#input\_vpc\_cidr) | VPC CIDR for the endpoints to communicate with. | `string` | n/a | yes |

@@ -13,6 +13,8 @@ resource "aws_security_group" "vpc_endpoint_sg" {
 }
 
 resource "aws_security_group_rule" "inbound_tls" {
+  count = var.create_endpoint_security_group ? 1 : 0
+
   description       = "Allow inbound TLS"
   type              = "ingress"
   from_port         = 443
@@ -23,6 +25,8 @@ resource "aws_security_group_rule" "inbound_tls" {
 }
 
 resource "aws_security_group_rule" "inbound_http" {
+  count = var.create_endpoint_security_group ? 1 : 0
+
   description       = "Allow inbound HTTP"
   type              = "ingress"
   from_port         = 80
@@ -33,6 +37,8 @@ resource "aws_security_group_rule" "inbound_http" {
 }
 
 resource "aws_security_group_rule" "outbound_all" {
+  count = var.create_endpoint_security_group ? 1 : 0
+
   description       = "Allow outbound traffic to internet"
   type              = "egress"
   from_port         = 0
