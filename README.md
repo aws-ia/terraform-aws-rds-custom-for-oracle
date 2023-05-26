@@ -1,11 +1,21 @@
 <!-- BEGIN_TF_DOCS -->
-# Terraform Module Project
+# AWS RDS Custom for Oracle Module
+This module provides prescriptive deployment for RDS Custom for Oracle. This module provides the ability to create primary instances and associated replicas.
 
-:no\_entry\_sign: Do not edit this readme.md file. To learn how to change this content and work with this repository, refer to CONTRIBUTING.md
+Common deployment examples can be found in [examples/](./examples).
 
-## Readme Content
+## Availability Zones
+If not specified, primariy instances will be placed in the first subnet provided to `subnet_config`. Replicas will be placed in subnets separate from the primary, starting with the second subnet.
 
-This file will contain any instructional information about this module.
+To specify the placement to specific availability zones for the primary and replicas, use the `aws_db_instance_primary.availability_zone` and `aws_db_instance_replicas.availability_zones` attribute(s). If specifified, availability\_zones will be applied in order to the replicas.
+
+## IAM Role and Instance Profile
+If not specified, the module will create an IAM role and instance profile for the primary and replicas.
+
+To specify the IAM role and instance profile, use the `iam_role_arn` and `iam_instance_profile_arn` attributes. The role name and instance profile name must start with `AWSRDSCustom`.
+
+# Contributing
+Please see our [developer documentation](https://github.com/aws-ia/terraform-aws-vpc/blob/main/contributing.md) for guidance on contributing to this module.
 
 ## Requirements
 
