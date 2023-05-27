@@ -7,10 +7,12 @@ CHECKOV=$(checkov --config-file $FUNCTIONAL_TEST_PATH/.merged_checkov.yml  || tr
 if [-z "${CHECKOV}" ]
 then
   echo "Checkov Analysis Passed"
-  git clean -fffxd
+  cd ${PROJECT_PATH}
+  git clean -ffxd
 else
   echo "Checkov Analysis Failed"
   echo "$CHECKOV"
-  git clean -fffxd
+  cd ${PROJECT_PATH}
+  git clean -ffxd
   exit 1
 fi
