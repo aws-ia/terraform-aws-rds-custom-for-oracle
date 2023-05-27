@@ -8,10 +8,6 @@ skip-check:
 - CKV2_GCP*
 - CKV_AZURE*
 - CKV2_AZURE*
-- CKV_AWS_157 # not supported with RDS custom for Oracle
-- CKV2_AWS_5 # security group attached to vcp endpoint
-- CKV2_AWS_11 # skip VPC flow log for example
-- CKV2_AWS_12 # skip VPC default security group for example
 
 repo-root-for-plan-enrichment:
 - '.'
