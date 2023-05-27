@@ -38,5 +38,9 @@ go mod tidy
 go install github.com/gruntwork-io/terratest/modules/terraform
 go test -timeout 45m
 
-git clean -fxd
+# #********** CLEANUP *************
+echo "Cleaning up all temp files and artifacts"
+cd ${PROJECT_PATH}
+git clean -ffxd
+
 echo "End of Functional Tests"
