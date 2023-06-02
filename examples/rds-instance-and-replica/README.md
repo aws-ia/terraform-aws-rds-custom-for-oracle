@@ -4,8 +4,8 @@
 This example shows how you can create a primary instance, and two replicas in your Amazon VPC. This example creates the following:
 
 * RDS Custom for Oracle primary instance using a precreated Custom Engine Version (CEV)
-* Two RDS Custom for Oracle replica instances from the primary
-* VPC with thre private subnets
+* Two [RDS Custom for Oracle replica instances](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-rr.html) from the primary
+* VPC with three private subnets
 
 ## Requirements
 

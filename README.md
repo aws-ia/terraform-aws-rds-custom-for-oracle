@@ -1,9 +1,35 @@
 <!-- BEGIN_TF_DOCS -->
 # AWS RDS Custom for Oracle Module
 
-This module provides prescriptive deployment for RDS Custom for Oracle. This module provides the ability to create primary instances and associated replicas.
+This module provides prescriptive deployment for [RDS Custom for Oracle](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/working-with-custom-oracle.html). This module provides the ability to create primary instances and associated replicas.
 
 Common deployment examples can be found in [examples/](./examples).
+
+## This module creates the following resources:
+
+* RDS Custom for Oracle primary instance using a precreated [Custom Engine Version (CEV)](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-cev.html)
+* (optional) [RDS Custom for Oracle replcia instance(s)](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-rr.html) from the primary
+* (optional) [IAM Role and Instance Profile](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-setup-orcl.html#custom-setup-orcl.iam-vpc) for the primary and replicas
+* (optional) [DBSubnet Group](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-setup-orcl.html#custom-setup-orcl.iam-vpc) for the primary and replicas
+* (optional) [Security Group](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-setup-orcl.html#custom-setup-orcl.iam-vpc) for the VPC endpoints, allowing the primary and replica instance(s) to communicate with dependent AWS services
+* (optional) VPC endpoints, which are rquired for primary and replica instance(s) to communicate with dependent AWS services:
+    * com.amazonaws.region.s3
+    * com.amazonaws.region.ec2
+    * com.amazonaws.region.ec2messages
+    * com.amazonaws.region.monitoring
+    * com.amazonaws.region.ssm
+    * com.amazonaws.region.ssmmessages
+    * com.amazonaws.region.logs
+    * com.amazonaws.region.events
+    * com.amazonaws.region.secretsmanager
+
+## Prerequisites
+
+RDS Custom for Oracle requires a [Custom Engine Version (CEV)](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-cev.html) to be created before creating the primary instance. The CEV must be created in the same region as the primary instance. The CEV must be created using customer managed symmetric AWS KMS Key.
+
+For more information on RDS Custom for Oracle prerequisites, see [Prerequisites for using Amazon RDS Custom for Oracle](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-setup-orcl.html).
+
+For more information on creating a CEV, see [Creating a Custom Engine Version](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-cev.create.html).
 
 ## Availability Zones
 
@@ -16,6 +42,13 @@ To specify the placement to specific availability zones for the primary and repl
 If not specified, the module will create an IAM role and instance profile for the primary and replicas.
 
 To specify the IAM role and instance profile, use the `iam_role_arn` and `iam_instance_profile_arn` attributes. The role name and instance profile name must start with `AWSRDSCustom`.
+
+```hcl
+  create_iam_role             = false # Toggle to create or assign IAM role. Defaut name and description will be used.
+  iam_role_arn                = "arn:aws:iam::123456789012:role/AWSRDSCustomInstanceRole-us-west-2"
+  create_iam_instance_profile = false # Toggle to create or assign IAM instance profile. Defaut name and description will be used.
+  iam_instance_profile_arn    = "arn:aws:iam::123456789012:instance-profile/AWSRDSCustomInstanceProfile-us-west-2"
+```
 
 ## Contributing
 

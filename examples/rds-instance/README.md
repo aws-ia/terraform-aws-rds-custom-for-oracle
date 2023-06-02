@@ -4,7 +4,7 @@
 This example shows how you can create a primary instance in your Amazon VPC. This example creates the following:
 
 * RDS Custom for Oracle primary instance using a precreated Custom Engine Version (CEV)
-* VPC with two private subnets.
+* VPC with two private subnets (two subnets are required for a DBSubnet Group).
 
 ## Requirements
 
