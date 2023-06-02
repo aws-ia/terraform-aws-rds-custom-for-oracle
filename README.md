@@ -5,7 +5,7 @@ This module provides prescriptive deployment for [RDS Custom for Oracle](https:/
 
 Common deployment examples can be found in [examples/](./examples).
 
-## This module creates the following resources:
+## Resouces Created
 
 * RDS Custom for Oracle primary instance using a precreated [Custom Engine Version (CEV)](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-cev.html)
 * (optional) [RDS Custom for Oracle replcia instance(s)](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-rr.html) from the primary

@@ -18,7 +18,7 @@ resource "aws_db_instance" "primary" {
   # Security and best practice checks suppression
   # bridgecrew:skip=CKV_AWS_118:Enhanced monitoring is not supported with RDS Custom for Oracle
   # bridgecrew:skip=CKV_AWS_129:CloudWatch Logs exports is not supported with RDS Custom for Oracle
-  # bridgecrew:skip=CKV_AWS_226:ClouAutoMinorVersionUpgrade is not supported with RDS Custom for Oracle, requires AutoMinorVersionUpgrade set to false.
+  # bridgecrew:skip=CKV_AWS_226:AutoMinorVersionUpgrade is not supported with RDS Custom for Oracle, requires AutoMinorVersionUpgrade set to false.
 
   allocated_storage           = try(var.aws_db_instance_primary.allocated_storage, null)
   auto_minor_version_upgrade  = false # RDS Custom for Oracle requires AutoMinorVersionUpgrade set to false.
@@ -107,7 +107,8 @@ resource "aws_db_instance" "replicas" {
   RDS instance creation and configuration requires that the VPC endpoints and IAM instance profile be created first.
   */
   depends_on = [
-    module.private_link_endpoints
+    module.private_link_endpoints,
+    aws_db_instance.aws_db_instance.primary
   ]
 
   timeouts {
