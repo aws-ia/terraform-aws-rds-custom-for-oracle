@@ -9,7 +9,7 @@ data "aws_rds_orderable_db_instance" "custom-oracle" {
 
 # The RDS instances resource requires an ARN. Look up the ARN of the KMS key associated with the CEV.
 data "aws_kms_key" "by_id" {
-  key_id = "mrk-ef240951ceba4a5a97de6d84565b9f78" # KMS key associated with the CEV
+  key_id = "mrk-a1b2c3d4-5678-90ab-cdefghi-jklmn" # KMS key associated with the CEV
 }
 
 module "rds_custom_for_oracle" {
@@ -46,7 +46,7 @@ module "rds_custom_for_oracle" {
 
   aws_db_instance_replicas = {
     replica_count           = 2
-    backup_retention_period = 1
+    backup_retention_period = 30
     instance_class          = data.aws_rds_orderable_db_instance.custom-oracle.instance_class
     skip_final_snapshot     = true
   }

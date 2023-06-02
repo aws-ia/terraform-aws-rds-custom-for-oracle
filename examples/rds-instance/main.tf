@@ -9,7 +9,7 @@ data "aws_rds_orderable_db_instance" "custom-oracle" {
 
 # The RDS instances resource requires an ARN. Look up the ARN of the KMS key associated with the CEV.
 data "aws_kms_key" "by_id" {
-  key_id = "mrk-ef240951ceba4a5a97de6d84565b9f78" # KMS key associated with the CEV
+  key_id = "mrk-a1b2c3d4-5678-90ab-cdefghi-jklmn" # KMS key associated with the CEV
 }
 
 
@@ -28,15 +28,13 @@ module "rds_custom_for_oracle" {
   create_db_subnet_group = true # Toggle to create or assign db subnet group. Defaut name and description will be used.
   create_vpc_endpoints   = true # Toggle to create or not the VPC endpoints. Defaut name and description will be used.
 
-  create_iam_role             = false # Toggle to create or assign IAM role. Defaut name and description will be used.
-  iam_role_arn                = "arn:aws:iam::313127153659:role/AWSRDSCustomInstanceRole-us-west-2"
-  create_iam_instance_profile = false # Toggle to create or assign IAM instance profile. Defaut name and description will be used.
-  iam_instance_profile_arn    = "arn:aws:iam::313127153659:instance-profile/AWSRDSCustomInstanceProfile-us-west-2"
+  create_iam_role             = true # Toggle to create or assign IAM role. Defaut name and description will be used.
+  create_iam_instance_profile = true # Toggle to create or assign IAM instance profile. Defaut name will be used.
 
   aws_db_instance_primary = {
     apply_immediately       = true
     allocated_storage       = 50
-    backup_retention_period = 1
+    backup_retention_period = 30
     db_name                 = "ORCL"
     engine                  = data.aws_rds_orderable_db_instance.custom-oracle.engine
     engine_version          = data.aws_rds_orderable_db_instance.custom-oracle.engine_version
