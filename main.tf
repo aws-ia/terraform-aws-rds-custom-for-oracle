@@ -13,10 +13,15 @@ resource "aws_db_subnet_group" "rdscustom" {
   tags        = var.tags
 }
 
-#tfsec:ignore:aws-rds-enable-performance-insights AWS RDs Custom for Oracle does not support Performance Insights
+#tfsec:ignore:aws-rds-enable-performance-insights AWS RDS Custom for Oracle does not support Performance Insights
 resource "aws_db_instance" "primary" {
+  # Security and best practice checks suppression
+  # bridgecrew:skip=CKV_AWS_118:Enhanced monitoring is not supported with RDS Custom for Oracle
+  # bridgecrew:skip=CKV_AWS_129:CloudWatch Logs exports is not supported with RDS Custom for Oracle
+  # bridgecrew:skip=CKV_AWS_226:ClouAutoMinorVersionUpgrade is not supported with RDS Custom for Oracle, requires AutoMinorVersionUpgrade set to false.
+
   allocated_storage           = try(var.aws_db_instance_primary.allocated_storage, null)
-  auto_minor_version_upgrade  = false # Not supported with RDS Custom for Oracle
+  auto_minor_version_upgrade  = false # RDS Custom for Oracle requires AutoMinorVersionUpgrade set to false.
   apply_immediately           = try(var.aws_db_instance_primary.apply_immediately, null)
   availability_zone           = local.primary_placement_specified == true ? var.aws_db_instance_primary.availability_zone : local.private_subnet_azs[0]
   backup_retention_period     = try(var.aws_db_instance_primary.backup_retention_period, null)
@@ -62,12 +67,16 @@ resource "aws_db_instance" "primary" {
 
 resource "aws_db_instance" "replicas" {
   count = local.create_replicas ? var.aws_db_instance_replicas.replica_count : 0
+  # Security and best practice checks suppression
+  # bridgecrew:skip=CKV_AWS_118:Enhanced monitoring is not supported with RDS Custom for Oracle
+  # bridgecrew:skip=CKV_AWS_129:CloudWatch Logs exports is not supported with RDS Custom for Oracle
+  # bridgecrew:skip=CKV_AWS_226:ClouAutoMinorVersionUpgrade is not supported with RDS Custom for Oracle, requires AutoMinorVersionUpgrade set to false.
 
   replicate_source_db = try(var.aws_db_instance_replicas.identifier, aws_db_instance.primary.identifier)
   replica_mode        = "mounted"
 
   allocated_storage          = try(var.aws_db_instance_replicas.allocated_storage, null)
-  auto_minor_version_upgrade = false # Not supported with RDS Custom for Oracle
+  auto_minor_version_upgrade = false # RDS Custom for Oracle requires AutoMinorVersionUpgrade set to false.
   apply_immediately          = try(var.aws_db_instance_replicas.apply_immediately, null)
   # If not specified, replicas will be placed in subnets separate from the primary by default (primary placed into the first subnet).
   # If specified, availability_zones will be applied in order to the replicas.
