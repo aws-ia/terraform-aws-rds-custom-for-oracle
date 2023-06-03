@@ -18,7 +18,10 @@ resource "aws_db_instance" "primary" {
   # Security and best practice checks suppression
   # bridgecrew:skip=CKV_AWS_118:Enhanced monitoring is not supported with RDS Custom for Oracle
   # bridgecrew:skip=CKV_AWS_129:CloudWatch Logs exports is not supported with RDS Custom for Oracle
-  # bridgecrew:skip=CKV_AWS_226:AutoMinorVersionUpgrade is not supported with RDS Custom for Oracle, requires AutoMinorVersionUpgrade set to false.
+  # bridgecrew:skip=CKV_AWS_226:ClouAutoMinorVersionUpgrade is not supported with RDS Custom for Oracle, requires AutoMinorVersionUpgrade set to false.
+  # bridgecrew:skip=CKV_AWS_353:Performance insight not supported for AWS RDS Custom for Oracle
+  # bridgecrew:skip=CKV_AWS_354:Performance insight not supported for AWS RDS Custom for Oracle
+  
 
   allocated_storage           = try(var.aws_db_instance_primary.allocated_storage, null)
   auto_minor_version_upgrade  = false # RDS Custom for Oracle requires AutoMinorVersionUpgrade set to false.
@@ -71,7 +74,9 @@ resource "aws_db_instance" "replicas" {
   # bridgecrew:skip=CKV_AWS_118:Enhanced monitoring is not supported with RDS Custom for Oracle
   # bridgecrew:skip=CKV_AWS_129:CloudWatch Logs exports is not supported with RDS Custom for Oracle
   # bridgecrew:skip=CKV_AWS_226:ClouAutoMinorVersionUpgrade is not supported with RDS Custom for Oracle, requires AutoMinorVersionUpgrade set to false.
-
+  # bridgecrew:skip=CKV_AWS_353:Performance insight not supported for AWS RDS Custom for Oracle
+  # bridgecrew:skip=CKV_AWS_354:Performance insight not supported for AWS RDS Custom for Oracle
+  
   replicate_source_db = try(var.aws_db_instance_replicas.identifier, aws_db_instance.primary.identifier)
   replica_mode        = "mounted"
 
