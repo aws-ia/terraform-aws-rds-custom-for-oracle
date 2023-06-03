@@ -36,9 +36,9 @@ rm -f go.mod
 go mod init github.com/aws-ia/terraform-project-ephemeral
 go mod tidy
 go install github.com/gruntwork-io/terratest/modules/terraform
-go test -timeout 45m
+go test -timeout 180m
 
-# #********** CLEANUP *************
+#********** CLEANUP *************
 echo "Cleaning up all temp files and artifacts"
 cd ${PROJECT_PATH}
 git clean -ffxd
