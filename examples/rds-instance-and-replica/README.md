@@ -36,7 +36,9 @@ This example shows how you can create a primary instance, and two replicas in yo
 
 ## Inputs
 
-No inputs.
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_kms_key_id_for_cev"></a> [kms\_key\_id\_for\_cev](#input\_kms\_key\_id\_for\_cev) | KMS key associated with the CEV | `string` | n/a | yes |
 
 ## Outputs
 

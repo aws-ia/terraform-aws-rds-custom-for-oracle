@@ -9,7 +9,7 @@ data "aws_rds_orderable_db_instance" "custom-oracle" {
 
 # The RDS instances resource requires an ARN. Look up the ARN of the KMS key associated with the CEV.
 data "aws_kms_key" "by_id" {
-  key_id = "mrk-a1b2c3d4-5678-90ab-cdefghi-jklmn" # KMS key associated with the CEV
+  key_id = var.kms_key_id_for_cev
 }
 
 module "rds_custom_for_oracle" {
@@ -37,7 +37,7 @@ module "rds_custom_for_oracle" {
     db_name                 = "ORCL"
     engine                  = data.aws_rds_orderable_db_instance.custom-oracle.engine
     engine_version          = data.aws_rds_orderable_db_instance.custom-oracle.engine_version
-    identifier              = "instance-05"
+    identifier              = "instance-ha"
     instance_class          = data.aws_rds_orderable_db_instance.custom-oracle.instance_class
     username                = "dbadmin"
     password                = "avoid-plaintext-passwords"
@@ -85,6 +85,11 @@ module "vpc" {
   subnets = {
     private = { netmask = 24 }
   }
+}
+
+# KMS key associated with the CEV
+variable "kms_key_id_for_cev" {
+  type = string
 }
 
 terraform {
