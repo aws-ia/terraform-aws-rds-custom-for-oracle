@@ -113,7 +113,7 @@ resource "aws_db_instance" "replicas" {
   */
   depends_on = [
     module.private_link_endpoints,
-    aws_db_instance.aws_db_instance.primary
+    aws_db_instance.primary
   ]
 
   timeouts {
