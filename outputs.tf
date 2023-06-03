@@ -15,10 +15,10 @@ output "db_subnet_group" {
 
 output "aws_db_instance_primary_attributes" {
   description = "DBInstance resource attributes. Full output of aws_db_instance."
-  value       = aws_db_instance.primary
+  value       = {for k,v in aws_db_instance.primary: k => v if k != "password" }
 }
 
 output "aws_db_instance_replicas_attributes" {
   description = "DBInstance resource attributes. Full output of aws_db_instance."
-  value       = aws_db_instance.replicas
+  value       = {for k,v in aws_db_instance.replicas: k => v if k != "password" }
 }
