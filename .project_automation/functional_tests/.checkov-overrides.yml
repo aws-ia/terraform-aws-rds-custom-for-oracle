@@ -1,0 +1,7 @@
+skip-check:
+- CKV_AWS_157 # not supported with RDS custom for Oracle
+- CKV2_AWS_5 # security group attached to vcp endpoint
+- CKV2_AWS_11 # skip VPC flow log for example
+- CKV2_AWS_12 # skip VPC default security group for example
+- CKV_AWS_293 # Deletion protection is available as variable
+- CKV2_AWS_60 # Copy tags to snapshot is available as variable
