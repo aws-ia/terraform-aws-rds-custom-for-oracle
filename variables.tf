@@ -218,7 +218,7 @@ EOF
 
   validation {
     condition     = length(var.aws_db_instance_primary.db_name) <= 8
-    error_message = "DBName can only be 8 charachters in length."
+    error_message = "DBName can only be 8 characters in length."
   }
   validation {
     condition     = can(regex("^custom-oracle", var.aws_db_instance_primary.engine))

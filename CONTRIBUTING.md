@@ -23,7 +23,7 @@ reported the issue. Please try to include as much information as you can. Detail
 * Anything unusual about your environment or deployment
 
 ## Contributing via Pull Requests
-In order to contibute code to this repository, you must submit a *[Pull Request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)*. To do so, you must *[fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo)* this repostiory, make your changes in your forked version and submit a *Pull Request*.
+In order to contribute code to this repository, you must submit a *[Pull Request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)*. To do so, you must *[fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo)* this repository, make your changes in your forked version and submit a *Pull Request*.
 
 Before sending us a pull request, please ensure that:
 
@@ -65,7 +65,7 @@ It is a best practice to perform these checks locally prior to submitting a pull
 - Checkov
 - Terratest
 
-> :bangbang: The readme.md file will be created after all checks have completed successfuly, it is recommended that you install terraform-docs locally in order to preview your readme.md file prior to publication.
+> :bangbang: The readme.md file will be created after all checks have completed successfully, it is recommended that you install terraform-docs locally in order to preview your readme.md file prior to publication.
 
 ## Install the required tools
 

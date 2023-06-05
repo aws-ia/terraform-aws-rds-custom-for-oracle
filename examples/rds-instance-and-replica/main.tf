@@ -54,7 +54,7 @@ module "rds_custom_for_oracle" {
     CostCenter = "example-inc:cost-allocation:CostCenter"
   }
 
-  # explict dependency on the VPC module, as module.vpc.aws_route_table_association.private[*] are required for full lifecycle operations
+  # explicit dependency on the VPC module, as module.vpc.aws_route_table_association.private[*] are required for full lifecycle operations
   depends_on = [module.vpc]
 }
 
