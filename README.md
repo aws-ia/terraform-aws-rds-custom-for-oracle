@@ -8,7 +8,7 @@ Common deployment examples can be found in [examples/](./examples).
 ## Resources Created
 
 * RDS Custom for Oracle primary instance using a precreated [Custom Engine Version (CEV)](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-cev.html)
-* (optional) [RDS Custom for Oracle replcia instance(s)](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-rr.html) from the primary
+* (optional) [RDS Custom for Oracle replica instance(s)](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-rr.html) from the primary
 * (optional) [IAM Role and Instance Profile](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-setup-orcl.html#custom-setup-orcl.iam-vpc) for the primary and replicas
 * (optional) [DBSubnet Group](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-setup-orcl.html#custom-setup-orcl.iam-vpc) for the primary and replicas
 * (optional) [Security Group](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-setup-orcl.html#custom-setup-orcl.iam-vpc) for the VPC endpoints, allowing the primary and replica instance(s) to communicate with dependent AWS services
