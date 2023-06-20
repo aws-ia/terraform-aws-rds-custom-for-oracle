@@ -3,5 +3,4 @@
 # MD013 Line length
 # MD029 Ordered list item prefix
 # MD033 Inline HTML
-rules "~MD007", "~MD013", "~MD029"
-rule "MD033", :allowed_elements => 'img, p'
+rules "~MD007", "~MD013", "~MD029", "~MD033"
