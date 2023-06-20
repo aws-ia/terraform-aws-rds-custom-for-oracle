@@ -3,7 +3,12 @@
 
 This module provides prescriptive deployment for [RDS Custom for Oracle](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/working-with-custom-oracle.html). This module provides the ability to create primary instances and associated replicas.
 
-Common deployment examples can be found in [examples/](./examples).
+Figure 1 shows an example configuration you can deploy using this module. For more details, common deployment examples can be found in [examples/](./examples).
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/aws-ia/terraform-aws-rds-custom-for-oracle/main/images/rds_cfo_oracle.png" alt="Simple" width="75%">
+</p>
+Figure 1. Example configuration of RDS Custom for Oracle with a primary instance, and two replicas.
 
 ## Resources Created
 
