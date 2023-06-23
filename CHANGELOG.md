@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.1
+Minor documentation update including diagram
+
+## 1.0.0
+Version bump to follow semver
+
 ## 0.0.1
 
 First release consisted of:
