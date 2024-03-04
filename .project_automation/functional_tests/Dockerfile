@@ -11,8 +11,11 @@ RUN curl -s https://raw.githubusercontent.com/aquasecurity/tfsec/master/scripts/
 RUN cd /tmp && \
     wget https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz && \
     tar -C /usr/local/bin -xzf go${GO_VERSION}.linux-amd64.tar.gz && chmod 755 /usr/local/bin/go
+<<<<<<< before updating
 
 RUN pip3 install checkov
 
 RUN wget https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_amd64 -O /usr/bin/yq && \
     chmod +x /usr/bin/yq
+=======
+>>>>>>> after updating
