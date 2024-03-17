@@ -9,6 +9,7 @@ echo "Starting Functional Tests"
 
 cd ${PROJECT_PATH}
 
+<<<<<<< before updating
 #********** Environment Setup *************
 FUNCTIONAL_TEST_PATH=${PROJECT_PATH}/.project_automation/functional_tests
 CHECKOV_TEST_SCRIPT_PATH=${PROJECT_PATH}/.project_automation/functional_tests/checkov_test.sh
@@ -22,6 +23,8 @@ terraform plan -out tf.plan
 terraform show -json tf.plan  > tf.json 
 checkov --config-file ${PROJECT_PATH}/.config/checkov.yml
 
+=======
+>>>>>>> after updating
 #********** Terratest execution **********
 echo "Running Terratest"
 export GOPROXY=https://goproxy.io,direct
